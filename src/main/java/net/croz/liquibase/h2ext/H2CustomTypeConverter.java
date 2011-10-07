@@ -13,6 +13,12 @@ import liquibase.database.typeconversion.core.H2TypeConverter;
 public class H2CustomTypeConverter extends H2TypeConverter {
 
     @Override
+    public int getPriority() {
+        // put higher priority to override default and database default
+        return PRIORITY_DATABASE + 1;
+    }
+
+    @Override
     public ClobType getClobType() {
         return new ClobType("CLOB");
     }
